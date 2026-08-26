@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <!--
+    ====================================================================
+    HTML COMMENTS & SYSTEM CONFIGURATION
+    ====================================================================
+    
+    1. Narrative & Structure Plan:
+       - Section 1: Executive KPI Metrics (Hero Section with Key Data Highlights)
+       - Section 2: Material Engineering & UK Repair Economics (AL vs Carbon Fatigue, Denting, Leatherhead CBR Costs & Vibration Biomechanics Chart)
+       - Section 3: Drivetrain Ecosystem & Brake Chemistry (Shimano GRX vs SRAM AXS, Mineral Oil vs DOT 5.1 in damp UK climate)
+       - Section 4: Frame Geometry & Handling Dynamics (Stack/Reach vs Trail Plotly Scatter, IsoSpeed/Future Shock/Kingpin tech breakdown)
+       - Section 5: Cycle to Work (C2W) Interactive Tax Subsidy Calculator (Real-time salary sacrifice savings)
+       - Section 6: Comprehensive UK Brand Matrix & Interactive Data Explorer (Filterable catalog across Giant, Trek, Specialized, Cannondale, Canyon, Boardman, Ribble, Mason, Whyte, Kinesis, Pinnacle, Sonder)
+       - Section 7: Final Top Candidate Decision Matrix & Strategic Selection Guide (Detailed comparison cards for top 5 picks)
+
+    2. Color Palette Choice:
+       - Chosen Palette: "Energetic Teal & Slate"
+       - Primary Dark: #0f172a (Slate 900)
+       - Primary Brand/Accent: #0d9488 (Teal 600)
+       - Secondary Accent: #14b8a6 (Teal 500)
+       - Energy Accent: #f59e0b (Amber 500)
+       - Card Background: #ffffff
+       - Main Background: #f8fafc (Slate 50)
+
+    3. Visualization Selection & Justifications (Strictly NO SVG, NO Mermaid JS):
+       - Material Radar Chart: Chart.js Radar Chart (Canvas) - Multi-dimensional radar comparing AL vs Carbon properties.
+       - WBV Vibration Acceleration: Chart.js Grouped Bar Chart (Canvas) - Showing 40% vibration drop via tire pressure & material response.
+       - Drivetrain Range Bar Chart: Chart.js Horizontal Bar Chart (Canvas) - Comparing Gear steps and total gear range %.
+       - Frame Geometry Scatter: Plotly.js Canvas/WebGL Scatter Plot - Displaying Stack/Reach Ratio vs Trail (mm) for handling dynamics.
+       - Brand Matrix & C2W Calculator: Dynamic Tailwind HTML/CSS tables, flexboxes, cards, and interactive JavaScript controls.
+
+    4. Explicit Technology Constraints Confirmation:
+       - NEITHER Mermaid JS NOR SVG graphics were used anywhere in this document or generated output. All icons and diagrams use clean structured HTML, Unicode, and CSS styling. All charts use Chart.js and Plotly.js rendered strictly via HTML5 Canvas and WebGL.
+    ====================================================================
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英国 Gravel Bike 全景选购与车架工程分析系统</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Plotly.js CDN -->
+    <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 360px;
+            }
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans leading-relaxed min-h-screen">
+
+    <!-- Header Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-slate-900 text-white shadow-xl border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <span class="text-2xl">🚲</span>
+                <div>
+                    <h1 class="text-lg font-bold tracking-tight text-teal-400">英国 Gravel Bike 全景工程与选购指南</h1>
+                    <p class="text-xs text-slate-400">铝合金 vs 碳纤维 | 品牌全矩阵 | C2W退税计算 | 交互数据对比</p>
+                </div>
+            </div>
+            <nav class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#materials" class="hover:text-teal-400 transition">材料工程</a>
+                <a href="#drivetrain" class="hover:text-teal-400 transition">传动与刹车</a>
+                <a href="#geometry" class="hover:text-teal-400 transition">几何操控</a>
+                <a href="#c2w-calc" class="hover:text-teal-400 transition">C2W计算器</a>
+                <a href="#brand-matrix" class="hover:text-teal-400 transition">品牌全矩阵</a>
+                <a href="#top-candidates" class="hover:text-teal-400 transition">终极备选</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+        <!-- Hero & KPI Stats Overview Section -->
+        <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-teal-950 rounded-2xl p-6 sm:p-8 text-white shadow-2xl relative overflow-hidden">
+            <div class="max-w-3xl space-y-4">
+                <div class="inline-flex items-center space-x-2 bg-teal-500/20 border border-teal-500/40 px-3 py-1 rounded-full text-xs font-semibold text-teal-300">
+                    <span>🇬🇧 2026/27 英国Gravel选购专项决策报告</span>
+                </div>
+                <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight">克服英国泥泞与燧石：<br class="hidden sm:inline"/><span class="text-teal-400">数据驱动</span> 的Gravel Bike选购终极方案</h2>
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                    本系统全面整合材料力学、生物力学避震、刹车化学耐候性、几何操控参数、英国Cycle to Work（C2W）税务补贴，以及各大品牌的全系价格矩阵，助您破解选购迷思。
+                </p>
+            </div>
+
+            <!-- Core KPI Highlight Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+                <div class="bg-slate-800/80 backdrop-blur border border-slate-700/60 p-4 rounded-xl text-center">
+                    <div class="text-xs text-slate-400 font-medium">C2W 最高税费节省</div>
+                    <div class="text-2xl sm:text-3xl font-black text-amber-400 mt-1">32% - 42%</div>
+                    <div class="text-[10px] text-slate-400 mt-1">通过薪资牺牲规避所得税与NI</div>
+                </div>
+                <div class="bg-slate-800/80 backdrop-blur border border-slate-700/60 p-4 rounded-xl text-center">
+                    <div class="text-xs text-slate-400 font-medium">低胎压滤震贡献率</div>
+                    <div class="text-2xl sm:text-3xl font-black text-teal-400 mt-1">~40% ⬇</div>
+                    <div class="text-[10px] text-slate-400 mt-1">3.5 bar 降至 1.5 bar 加速度衰减</div>
+                </div>
+                <div class="bg-slate-800/80 backdrop-blur border border-slate-700/60 p-4 rounded-xl text-center">
+                    <div class="text-xs text-slate-400 font-medium">英国碳架典型修复成本</div>
+                    <div class="text-2xl sm:text-3xl font-black text-emerald-400 mt-1">£96 - £180</div>
+                    <div class="text-[10px] text-slate-400 mt-1">Surrey Leatherhead CBR修包成本</div>
+                </div>
+                <div class="bg-slate-800/80 backdrop-blur border border-slate-700/60 p-4 rounded-xl text-center">
+                    <div class="text-xs text-slate-400 font-medium">最大变速齿比范围</div>
+                    <div class="text-2xl sm:text-3xl font-black text-indigo-400 mt-1">630%</div>
+                    <div class="text-[10px] text-slate-400 mt-1">Shimano GRX 2x12 经典架构</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 1: Material Engineering & Repair Economics -->
+        <section id="materials" class="space-y-6">
+            <div class="border-l-4 border-teal-600 pl-4">
+                <h3 class="text-xl sm:text-2xl font-bold text-slate-900">第一部分：车架工程学与材料科学——铝合金 vs 碳纤维</h3>
+                <p class="text-slate-600 text-sm mt-1">
+                    在英国林道中暗藏燧石（Flint）与频繁冬季泥泞的恶劣骑行环境下，传统的“铝合金耐造、碳纤维脆弱昂贵”观念已被现代工程与后市场修复经济学颠覆。本节分析两种材料在疲劳寿命、抗冲击凹陷、振动吸收及英国本地维修成本上的本质区别。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Material Comparison Radar Chart -->
+                <div class="bg-white rounded-xl shadow-md border border-slate-200 p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-bold text-slate-800">铝合金 vs 碳纤维 五维力学特性对比</h4>
+                            <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded font-mono">Chart.js Radar</span>
+                        </div>
+                        <p class="text-xs text-slate-500 mb-4">
+                            碳纤维具有各向异性（Anisotropy），在抗疲劳与微震吸收上占优；铝合金具有各向同性，在抗点状飞石击打凹陷及初始采购成本上具备优势。
+                        </p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="materialRadarChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Vibration Biomechanics Bar Chart -->
+                <div class="bg-white rounded-xl shadow-md border border-slate-200 p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-bold text-slate-800">ISO 2631-1 全身振动：胎压 vs 车架滤震效应</h4>
+                            <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded font-mono">Chart.js Bar</span>
+                        </div>
+                        <p class="text-xs text-slate-500 mb-4">
+                            德国科隆体育大学（DSHS）实证研究表明：前叉末端 RMS 加速度受胎压影响剧烈。正确设定低胎压真空胎（1.5 bar）对生物力学舒适度的改善远超单独更换碳架。
+                        </p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="vibrationBarChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UK Repair Economics Highlight Card -->
+            <div class="bg-white rounded-xl shadow-md border border-slate-200 p-6">
+                <div class="flex items-center space-x-3 mb-4">
+                    <span class="text-2xl">🛠️</span>
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-lg">英国本土维修经济学颠覆性洞察</h4>
+                        <p class="text-xs text-slate-500">根据萨里郡 Leatherhead 知名机构 Carbon Bike Repair (CBR) 数据与英国后市场调研</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                        <div class="font-semibold text-teal-700 flex items-center justify-between">
+                            <span>碳纤维车架（Carbon Frame）</span>
+                            <span class="text-xs bg-teal-100 text-teal-800 px-2 py-0.5 rounded">可修复 / 保值高</span>
+                        </div>
+                        <ul class="mt-2 space-y-2 text-slate-600 text-xs">
+                            <li class="flex items-start"><span class="text-teal-500 font-bold mr-1.5">•</span><b>超声波/X光无损检测：</b>准确定位层间剥离与内部裂纹。</li>
+                            <li class="flex items-start"><span class="text-teal-500 font-bold mr-1.5">•</span><b>修复成本极低：</b>后下叉断裂基础修补仅需 <b>£96 - £180</b>，局部补漆后强度恢复甚至超越原厂。</li>
+                            <li class="flex items-start"><span class="text-teal-500 font-bold mr-1.5">•</span><b>无限疲劳寿命：</b>在正常设计应力区间内无疲劳极限，长期持有经济性好。</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                        <div class="font-semibold text-amber-700 flex items-center justify-between">
+                            <span>铝合金车架（Aluminum Frame）</span>
+                            <span class="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded">损坏易报废</span>
+                        </div>
+                        <ul class="mt-2 space-y-2 text-slate-600 text-xs">
+                            <li class="flex items-start"><span class="text-amber-500 font-bold mr-1.5">•</span><b>存在明确疲劳极限：</b>长期高频碎石震动会导致金属内部微裂纹扩展。</li>
+                            <li class="flex items-start"><span class="text-amber-500 font-bold mr-1.5">•</span><b>维修成本极高/不可逆：</b>开裂后焊接需伴随昂贵且复杂的整体热处理退火，否则二次脆断。</li>
+                            <li class="flex items-start"><span class="text-amber-500 font-bold mr-1.5">•</span><b>经济判定全损：</b>在英国一旦铝架管材严重凹陷或开裂，通常直接判定无维修价值。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: Drivetrain Ecosystem & Brake Chemistry -->
+        <section id="drivetrain" class="space-y-6">
+            <div class="border-l-4 border-teal-600 pl-4">
+                <h3 class="text-xl sm:text-2xl font-bold text-slate-900">第二部分：传动生态与刹车油化学耐候性</h3>
+                <p class="text-slate-600 text-sm mt-1">
+                    Gravel Bike 的实际地形适应力与后期维护成本很大程度上取决于传动齿比范围与液压刹车介质。英国多雨潮湿的冬季对刹车油的疏水性提出了苛刻要求。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Drivetrain Gear Range Comparison -->
+                <div class="bg-white rounded-xl shadow-md border border-slate-200 p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-bold text-slate-800">主流套件变速齿比范围 (%) 对比</h4>
+                            <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded font-mono">Chart.js Bar</span>
+                        </div>
+                        <p class="text-xs text-slate-500 mb-4">
+                            Shimano GRX 2x 提供最广齿比与绵密踏频；SRAM Mullet (1x) 拥有超大陡坡爬升齿比；SRAM XPLR 1x 则消除了前拨落链故障点。
+                        </p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="drivetrainBarChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Brake Fluid Chemistry Card -->
+                <div class="bg-white rounded-xl shadow-md border border-slate-200 p-6 flex flex-col justify-between">
+                    <div>
+                        <h4 class="font-bold text-slate-800 mb-2">刹车介质化学特性与英国环境耐候性</h4>
+                        <p class="text-xs text-slate-500 mb-4">
+                            英国海洋性气候常年降雨，路面泥泞。刹车油的吸水率（Hydroscopicity）决定了刹车手感衰减与维护周期。
+                        </p>
+                    </div>
+                    
+                    <div class="space-y-4 my-auto">
+                        <!-- Mineral Oil Box -->
+                        <div class="p-3.5 bg-emerald-50 border border-emerald-200 rounded-lg">
+                            <div class="flex justify-between items-center text-xs font-bold text-emerald-900">
+                                <span>🟢 Shimano 矿物油 (Mineral Oil)</span>
+                                <span class="text-emerald-700">疏水性 / 极低维护</span>
+                            </div>
+                            <p class="text-xs text-emerald-800 mt-1">
+                                不吸收空气中的水分，密封系统中数年手感不发软；对碳纤维车架漆面无腐蚀性，完美契合英国多雨涉水环境。
+                            </p>
+                        </div>
+
+                        <!-- DOT 5.1 Box -->
+                        <div class="p-3.5 bg-amber-50 border border-amber-200 rounded-lg">
+                            <div class="flex justify-between items-center text-xs font-bold text-amber-900">
+                                <span>🟡 SRAM DOT 5.1 刹车油</span>
+                                <span class="text-amber-700">强吸水性 / 需年度换油</span>
+                            </div>
+                            <p class="text-xs text-amber-800 mt-1">
+                                干沸点极高但具强吸水性。在英国湿冷冬季容易吸水膨胀导致手感发硬、活塞回弹不良，需每年强制排气换油（Bleeding）。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="text-[11px] text-slate-400 mt-4 text-center">
+                        💡 选购建议：通勤与长途穿越优先考虑 Shimano 矿物油系统，省去频繁维护之苦。
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: Frame Geometry & Handling Dynamics -->
+        <section id="geometry" class="space-y-6">
+            <div class="border-l-4 border-teal-600 pl-4">
+                <h3 class="text-xl sm:text-2xl font-bold text-slate-900">第三部分：车架几何密码与物理避震创新</h3>
+                <p class="text-slate-600 text-sm mt-1">
+                    车架几何参数（Stack-to-Reach 比值与 Trail 拖曳距）决定了车辆是“轨道车般稳定”还是“竞技灵敏”，而各大品牌独门物理避震技术则进一步拓展了舒适区。
+                </p>
+            </div>
+
+            <!-- Plotly Geometry Scatter Chart -->
+            <div class="bg-white rounded-xl shadow-md border border-slate-200 p-6">
+                <div class="flex justify-between items-center mb-2">
+                    <div>
+                        <h4 class="font-bold text-slate-800">各品牌代表车型几何分布图 (Stack/Reach vs Trail mm)</h4>
+                        <p class="text-xs text-slate-500">X轴: 拖曳距 Trail (mm) [越高直线越稳] | Y轴: Stack-to-Reach 比值 [越高骑姿越直立]</p>
+                    </div>
+                    <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded font-mono">Plotly WebGL</span>
+                </div>
+                <div id="geometryPlotlyChart" class="w-full h-80"></div>
+                <p class="text-xs text-slate-500 mt-2">
+                    <b>解析：</b> Specialized Diverge 处于左上方（舒适直立+操控活泼）；Trek Checkpoint 处于右上方（舒适直立+长轴距极致轨道级下坡稳定）；Giant Revolt 居于中游（兼顾公路巡航与越野的万金油）。
+                </p>
+            </div>
+
+            <!-- Tech Highlights Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+                    <div class="text-teal-600 font-bold text-sm mb-1">Trek IsoSpeed</div>
+                    <div class="text-xs font-semibold text-slate-700 mb-2">断开式座管微形变减震</div>
+                    <p class="text-xs text-slate-500">座管与上管物理分离，吸收后轮传导高频冲击，长途 Bikepacking 抗疲劳利器。</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+                    <div class="text-teal-600 font-bold text-sm mb-1">Specialized Future Shock</div>
+                    <div class="text-xs font-semibold text-slate-700 mb-2">20mm 头管垂直微弹簧</div>
+                    <p class="text-xs text-slate-500">位于把立下方，隔离手臂与肩颈震动，根治碎石路面手腕麻木。</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+                    <div class="text-teal-600 font-bold text-sm mb-1">Cannondale Kingpin</div>
+                    <div class="text-xs font-semibold text-slate-700 mb-2">后三角转点软尾悬挂</div>
+                    <p class="text-xs text-slate-500">提供高达 30mm 物理形变行程，免除气压避震器繁重维护。</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+                    <div class="text-teal-600 font-bold text-sm mb-1">Giant Flip-Chip</div>
+                    <div class="text-xs font-semibold text-slate-700 mb-2">可调后轴距 Flip-Chip</div>
+                    <p class="text-xs text-slate-500">短轴距提升冲刺响应；长轴距兼容 53mm 宽胎，提高泥地稳定性。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: Interactive UK C2W Calculator -->
+        <section id="c2w-calc" class="bg-gradient-to-r from-teal-900 to-slate-900 rounded-2xl p-6 sm:p-8 text-white shadow-xl space-y-6">
+            <div class="max-w-3xl">
+                <div class="inline-block bg-teal-500/30 text-teal-300 text-xs px-2.5 py-1 rounded font-semibold mb-2">🇬🇧 英国购车杠杆工具</div>
+                <h3 class="text-xl sm:text-3xl font-extrabold">Cycle to Work (C2W) 税费补贴交互计算器</h3>
+                <p class="text-slate-300 text-xs sm:text-sm mt-1">
+                    在英国通过 Cycle to Work Scheme（如 Greencommute, Cyclescheme, Evans C2W）购车，可通过 Gross Salary 薪资牺牲规避 Income Tax 与 NI，大幅降低购置成本。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center bg-slate-800/80 backdrop-blur p-6 rounded-xl border border-slate-700">
+                <!-- Inputs Controls -->
+                <div class="space-y-4 lg:col-span-1">
+                    <div>
+                        <label for="bikePriceInput" class="block text-xs font-semibold text-slate-300 mb-1">整车预算价格 (GBP £):</label>
+                        <input type="number" id="bikePriceInput" value="2499" min="500" max="10000" step="50" class="w-full bg-slate-900 border border-slate-600 rounded px-3 py-2 text-white font-mono focus:outline-none focus:border-teal-400">
+                        <input type="range" id="bikePriceRange" value="2499" min="500" max="10000" step="50" class="w-full mt-2 accent-teal-400">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">您的所得税率边际 (Tax Bracket):</label>
+                        <select id="taxBracketSelect" class="w-full bg-slate-900 border border-slate-600 rounded px-3 py-2 text-white text-xs focus:outline-none focus:border-teal-400">
+                            <option value="basic">Basic Rate (20% Tax + 8% NI = ~32% 节省)</option>
+                            <option value="higher" selected>Higher Rate (40% Tax + 2% NI = ~42% 节省)</option>
+                            <option value="additional">Additional Rate (45% Tax + 2% NI = ~47% 节省)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">扣款期限 (Months):</label>
+                        <select id="tenureSelect" class="w-full bg-slate-900 border border-slate-600 rounded px-3 py-2 text-white text-xs focus:outline-none focus:border-teal-400">
+                            <option value="12">12 个月</option>
+                            <option value="24" selected>24 个月</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Live Results -->
+                <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+                    <div class="bg-slate-900/90 p-4 rounded-xl border border-slate-700">
+                        <div class="text-xs text-slate-400">原厂标价 (RRP)</div>
+                        <div id="resRRP" class="text-xl sm:text-2xl font-bold font-mono text-slate-200 mt-2">£2,499</div>
+                    </div>
+                    <div class="bg-slate-900/90 p-4 rounded-xl border border-teal-500/50">
+                        <div class="text-xs text-teal-400 font-bold">估算净实付成本</div>
+                        <div id="resNetCost" class="text-2xl sm:text-3xl font-black font-mono text-teal-400 mt-2">£1,449</div>
+                        <div id="resSaved" class="text-[10px] text-amber-400 mt-1">省 £1,050 (42%)</div>
+                    </div>
+                    <div class="bg-slate-900/90 p-4 rounded-xl border border-slate-700">
+                        <div class="text-xs text-slate-400">预计每月实付薪资扣除</div>
+                        <div id="resMonthly" class="text-xl sm:text-2xl font-bold font-mono text-emerald-400 mt-2">£60.38 /月</div>
+                        <div class="text-[10px] text-slate-500 mt-1">按 24 个月计算</div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-xs text-slate-400 text-center">
+                💡 <b>核心战略洞察：</b> C2W 的高额税费补贴使高税率纳税人能以铝架预算（~£1,450）实际购入高级碳纤车型（如 Giant Revolt Advanced 2），实现了“跨越材质阶层”的选购效应。
+            </div>
+        </section>
+
+        <!-- SECTION 5: Comprehensive UK Brand Matrix & Explorer -->
+        <section id="brand-matrix" class="space-y-6">
+            <div class="border-l-4 border-teal-600 pl-4 flex flex-wrap justify-between items-end">
+                <div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-slate-900">第四部分：英国市场全品牌 Gravel Bike 品类与价格全景矩阵</h3>
+                    <p class="text-slate-600 text-sm mt-1">
+                        覆盖国际一线大厂（捷安特、崔克、闪电、闪电、佳能戴尔、Canyon）与英国本土品牌（Boardman, Ribble, Mason, Whyte, Kinesis, Pinnacle, Sonder）。
+                    </p>
+                </div>
+            </div>
+
+            <!-- Filters & Controls Toolbar -->
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 space-y-3">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                    <!-- Search Input -->
+                    <div>
+                        <label class="block text-xs text-slate-500 mb-1">搜索品牌或型号:</label>
+                        <input type="text" id="searchInput" placeholder="例: Revolt, Checkpoint, Boardman..." class="w-full bg-slate-50 border border-slate-300 rounded px-3 py-1.5 text-xs text-slate-800 focus:outline-none focus:border-teal-500">
+                    </div>
+                    <!-- Frame Material Filter -->
+                    <div>
+                        <label class="block text-xs text-slate-500 mb-1">车架材质:</label>
+                        <select id="materialFilter" class="w-full bg-slate-50 border border-slate-300 rounded px-3 py-1.5 text-xs text-slate-800 focus:outline-none focus:border-teal-500">
+                            <option value="ALL">全部材质 (All Materials)</option>
+                            <option value="AL">铝合金 (Aluminum AL)</option>
+                            <option value="Carbon">碳纤维 (Carbon)</option>
+                        </select>
+                    </div>
+                    <!-- Brand Category Filter -->
+                    <div>
+                        <label class="block text-xs text-slate-500 mb-1">品牌阵营:</label>
+                        <select id="brandGroupFilter" class="w-full bg-slate-50 border border-slate-300 rounded px-3 py-1.5 text-xs text-slate-800 focus:outline-none focus:border-teal-500">
+                            <option value="ALL">全部品牌 (All Brands)</option>
+                            <option value="Global">国际一线大厂 (Giant, Trek, Specialized, etc.)</option>
+                            <option value="UKLocal">英国本土品牌 (Boardman, Ribble, Mason, etc.)</option>
+                        </select>
+                    </div>
+                    <!-- Max Price Slider -->
+                    <div>
+                        <div class="flex justify-between text-xs text-slate-500 mb-1">
+                            <span>最高价格限制:</span>
+                            <span id="maxPriceVal" class="font-bold text-teal-600">£10,000</span>
+                        </div>
+                        <input type="range" id="maxPriceRange" min="600" max="10000" step="200" value="10000" class="w-full accent-teal-600">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Dynamic Catalog Table -->
+            <div class="bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs text-slate-600">
+                        <thead class="bg-slate-900 text-slate-200 font-semibold uppercase tracking-wider text-[11px]">
+                            <tr>
+                                <th class="py-3 px-4">品牌</th>
+                                <th class="py-3 px-4">代表型号 / 车系</th>
+                                <th class="py-3 px-4">材质</th>
+                                <th class="py-3 px-4">英国指导价 (GBP)</th>
+                                <th class="py-3 px-4">C2W 估算实付 (42% Off)</th>
+                                <th class="py-3 px-4">核心亮点与适合场景</th>
+                            </tr>
+                        </thead>
+                        <tbody id="catalogTableBody" class="divide-y divide-slate-100 font-sans">
+                            <!-- JS injected rows -->
+                        </tbody>
+                    </table>
+                </div>
+                <div id="noResults" class="hidden p-8 text-center text-slate-400 text-xs">
+                    没有找到符合筛选条件的车型，请调整筛选参数。
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: Top Candidates Decision Matrix -->
+        <section id="top-candidates" class="space-y-6">
+            <div class="border-l-4 border-teal-600 pl-4">
+                <h3 class="text-xl sm:text-2xl font-bold text-slate-900">第五部分：终极选购备选方案矩阵 (Top Candidates)</h3>
+                <p class="text-slate-600 text-sm mt-1">
+                    基于车架工程学、零部件化学耐候性、英国气候匹配度及 C2W 税费补贴综合评估，提炼出最适合英国市场的 5 款终极备选车型。
+                </p>
+            </div>
+
+            <!-- Comparison Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Candidate 1 -->
+                <div class="bg-white rounded-xl shadow-md border-2 border-teal-500 p-6 flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-teal-500 text-white text-[10px] font-bold px-3 py-1 rounded-bl">🥇 综合性价比之王</div>
+                    <div>
+                        <div class="text-xs text-slate-400 font-bold uppercase tracking-wider">Carbon 碳纤 | 2x12 矿物油</div>
+                        <h4 class="text-lg font-black text-slate-900 mt-1">Giant Revolt Advanced 2</h4>
+                        <div class="flex items-baseline space-x-2 mt-2">
+                            <span class="text-2xl font-black text-teal-600 font-mono">£2,499</span>
+                            <span class="text-xs text-slate-400">RRP</span>
+                        </div>
+                        <div class="text-xs text-amber-600 font-semibold mt-0.5">C2W 实付约: £1,449</div>
+
+                        <ul class="mt-4 space-y-2 text-xs text-slate-600">
+                            <li class="flex items-start"><span class="text-teal-500 mr-1.5 font-bold">✓</span><b>套件：</b>Shimano GRX RX-610 2x12，齿比极广。</li>
+                            <li class="flex items-start"><span class="text-teal-500 mr-1.5 font-bold">✓</span><b>制动：</b>GRX 矿物油系统，完美抵抗英国多雨潮湿。</li>
+                            <li class="flex items-start"><span class="text-teal-500 mr-1.5 font-bold">✓</span><b>技术：</b>D-Fuse 碳纤减震座管 + Flip-Chip 53mm 可调胎宽。</li>
+                        </ul>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-100 text-xs text-slate-500">
+                        <b>适用：</b> 50km+ 混合地形穿越，寻找无短板 C2W 购车首选。
+                    </div>
+                </div>
+
+                <!-- Candidate 2 -->
+                <div class="bg-white rounded-xl shadow-md border border-slate-200 p-6 flex flex-col justify-between relative">
+                    <div class="absolute top-0 right-0 bg-slate-800 text-white text-[10px] font-bold px-3 py-1 rounded-bl">🥈 本土轻量化刺客</div>
+                    <div>
+                        <div class="text-xs text-slate-400 font-bold uppercase tracking-wider">Carbon 碳纤 (990g) | 2x12</div>
+                        <h4 class="text-lg font-black text-slate-900 mt-1">Boardman ADV 9.0 Carbon</h4>
+                        <div class="flex items-baseline space-x-2 mt-2">
+                            <span class="text-2xl font-black text-teal-600 font-mono">£2,000</span>
+                            <span class="text-xs text-slate-400">RRP</span>
+                        </div>
+                        <div class="text-xs text-amber-600 font-semibold mt-0.5">C2W 实付约: £1,160</div>
+
+                        <ul class="mt-4 space-y-2 text-xs text-slate-600">
+                            <li class="flex items-start"><span class="text-teal-500 mr-1.5 font-bold">✓</span><b>跨级配置：</b>仅 990g C10 碳架，标配高阶 GRX 820 套件。</li>
+                            <li class="flex items-start"><span class="text-teal-500 mr-1.5 font-bold">✓</span><b>整车重量：</b>整车仅 9.4kg，比同价位竞品轻 500g+。</li>
+                            <li class="flex items-start"><span class="text-teal-500 mr-1.5 font-bold">✓</span><b>本土设计：</b>预留全长挡泥板孔，极其适合英国冬季。</li>
+                        </ul>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-100 text-xs text-slate-500">
+                        <b>适用：</b> 极致追求性价比与轻快加速质感的骑手。
+                    </div>
+                </div>
+
+                <!-- Candidate 3 -->
+                <div class="bg-white rounded-xl shadow-md border border-slate-200 p-6 flex flex-col justify-between relative">
+                    <div class="absolute top-0 right-0 bg-indigo-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl">🥉 重装穿越装甲车</div>
+                    <div>
+                        <div class="text-xs text-slate-400 font-bold uppercase tracking-wider">AL 铝合金 | 1x12 Apex</div>
+                        <h4 class="text-lg font-black text-slate-900 mt-1">Trek Checkpoint ALR 5</h4>
+                        <div class="flex items-baseline space-x-2 mt-2">
+                            <span class="text-2xl font-black text-teal-600 font-mono">£1,700</span>
+                            <span class="text-xs text-slate-400">RRP</span>
+                        </div>
+                        <div class="text-xs text-amber-600 font-semibold mt-0.5">C2W 实付约: £986</div>
+
+                        <ul class="mt-4 space-y-2 text-xs text-slate-600">
+                            <li class="flex items-start"><span class="text-teal-500 mr-1.5 font-bold">✓</span><b>硬核装载：</b>全车海量挂载孔，加长 Reach 高速极为稳定。</li>
+                            <li class="flex items-start"><span class="text-teal-500 mr-1.5 font-bold">✓</span><b>耐用性：</b>高强度 Alpha Aluminum，无惧尖锐燧石撞击。</li>
+                            <li class="flex items-start"><span class="text-teal-500 mr-1.5 font-bold">✓</span><b>传动：</b>SRAM Apex XPLR 1x12，简单高效防掉链。</li>
+                        </ul>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-100 text-xs text-slate-500">
+                        <b>适用：</b> 苏格兰/威尔士多日 Bikepacking 荒野露营。
+                    </div>
+                </div>
+
+                <!-- Candidate 4 -->
+                <div class="bg-white rounded-xl shadow-md border border-slate-200 p-6 flex flex-col justify-between relative">
+                    <div class="absolute top-0 right-0 bg-slate-700 text-white text-[10px] font-bold px-3 py-1 rounded-bl">🏅 物理避震王者</div>
+                    <div>
+                        <div class="text-xs text-slate-400 font-bold uppercase tracking-wider">AL 铝合金 | Future Shock</div>
+                        <h4 class="text-lg font-black text-slate-900 mt-1">Specialized Diverge E5 Comp</h4>
+                        <div class="flex items-baseline space-x-2 mt-2">
+                            <span class="text-2xl font-black text-teal-600 font-mono">£2,399</span>
+                            <span class="text-xs text-slate-400">RRP</span>
+                        </div>
+                        <div class="text-xs text-amber-600 font-semibold mt-0.5">C2W 实付约: £1,391</div>
+
+                        <ul class="mt-4 space-y-2 text-xs text-slate-600">
+                            <li class="flex items-start"><span class="text-teal-500 mr-1.5 font-bold">✓</span><b>前端舒适：</b>搭载 Future Shock 20mm 垂直微避震器。</li>
+                            <li class="flex items-start"><span class="text-teal-500 mr-1.5 font-bold">✓</span><b>几何：</b>高 Stack 直立姿势，根治长途背部与上半身酸痛。</li>
+                        </ul>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-100 text-xs text-slate-500">
+                        <b>适用：</b> 上半身易疲劳、对头管减震有极高要求的骑手。
+                    </div>
+                </div>
+
+                <!-- Candidate 5 -->
+                <div class="bg-white rounded-xl shadow-md border border-slate-200 p-6 flex flex-col justify-between relative">
+                    <div class="absolute top-0 right-0 bg-amber-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl">💎 金属手工艺术</div>
+                    <div>
+                        <div class="text-xs text-slate-400 font-bold uppercase tracking-wider">Custom Dedacciai AL | UDH</div>
+                        <h4 class="text-lg font-black text-slate-900 mt-1">Mason Bokeh 3.5</h4>
+                        <div class="flex items-baseline space-x-2 mt-2">
+                            <span class="text-2xl font-black text-teal-600 font-mono">£3,600+</span>
+                            <span class="text-xs text-slate-400">整车估算</span>
+                        </div>
+                        <div class="text-xs text-amber-600 font-semibold mt-0.5">C2W 实付约: £2,088+</div>
+
+                        <ul class="mt-4 space-y-2 text-xs text-slate-600">
+                            <li class="flex items-start"><span class="text-teal-500 mr-1.5 font-bold">✓</span><b>顶级管材：</b>意大利 Dedacciai 定制铝管手工焊接。</li>
+                            <li class="flex items-start"><span class="text-teal-500 mr-1.5 font-bold">✓</span><b>面向未来：</b>兼容 UDH 尾勾系统，保值率极高。</li>
+                        </ul>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-100 text-xs text-slate-500">
+                        <b>适用：</b> 追求小众格调、高保值率与铝合金巅峰工艺的鉴赏玩家。
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 text-center text-xs mt-12">
+        <div class="max-w-7xl mx-auto px-4 space-y-2">
+            <p class="font-semibold text-slate-300">英国 Gravel Bike 全景工程与选购数据分析系统</p>
+            <p>基于 ISO 2631-1 生物力学震动标准、英国 Carbon Bike Repair (Surrey) 后市场维修数据及 2026/27 财年 C2W 税率计算构建。</p>
+            <p class="text-slate-600">声明：所有价格以英国各品牌与零售商实际发售为准，C2W 节省比例仅供估算参考。</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic & Charting Implementations -->
+    <script>
+        // ==========================================
+        // UTILITY FUNCTIONS & LABEL WRAPPER logic
+        // ==========================================
+        function wrapLabel(str, maxLen = 16) {
+            if (typeof str !== 'string' || str.length <= maxLen) return str;
+            const words = str.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(w => {
+                if ((currentLine + ' ' + w).trim().length > maxLen) {
+                    if (currentLine) lines.push(currentLine.trim());
+                    currentLine = w;
+                } else {
+                    currentLine = currentLine ? currentLine + ' ' + w : w;
+                }
+            });
+            if (currentLine) lines.push(currentLine.trim());
+            return lines;
+        }
+
+        const commonChartTooltipConfig = {
+            callbacks: {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    if (Array.isArray(label)) {
+                        return label.join(' ');
+                    } else {
+                        return label;
+                    }
+                }
+            }
+        };
+
+        // ==========================================
+        // CHART 1: Material Radar Chart (Chart.js)
+        // ==========================================
+        const radarLabelsRaw = ['抗高频疲劳寿命', '抗燧石点状击打凹陷', '英国本地修复便捷度', '低频微震吸收性', '初始性价比'];
+        const radarLabels = radarLabelsRaw.map(l => wrapLabel(l, 14));
+
+        const ctxRadar = document.getElementById('materialRadarChart').getContext('2d');
+        new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: radarLabels,
+                datasets: [
+                    {
+                        label: '碳纤维 (Carbon)',
+                        data: [95, 60, 90, 90, 65],
+                        backgroundColor: 'rgba(13, 148, 136, 0.25)',
+                        borderColor: '#0d9488',
+                        pointBackgroundColor: '#0d9488',
+                        borderWidth: 2
+                    },
+                    {
+                        label: '铝合金 (Aluminum AL)',
+                        data: [65, 90, 30, 60, 90],
+                        backgroundColor: 'rgba(245, 158, 11, 0.25)',
+                        borderColor: '#f59e0b',
+                        pointBackgroundColor: '#f59e0b',
+                        borderWidth: 2
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { color: '#e2e8f0' },
+                        grid: { color: '#f1f5f9' },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        ticks: { display: false }
+                    }
+                },
+                plugins: {
+                    legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+                    tooltip: commonChartTooltipConfig
+                }
+            }
+        });
+
+        // ==========================================
+        // CHART 2: Vibration Bar Chart (Chart.js)
+        // ==========================================
+        const vibLabelsRaw = ['铝架 + 3.5 bar 高胎压', '碳架 + 3.5 bar 高胎压', '铝架 + 1.5 bar 低真空胎', '碳架 + 1.5 bar 低真空胎'];
+        const vibLabels = vibLabelsRaw.map(l => wrapLabel(l, 14));
+
+        const ctxVib = document.getElementById('vibrationBarChart').getContext('2d');
+        new Chart(ctxVib, {
+            type: 'bar',
+            data: {
+                labels: vibLabels,
+                datasets: [{
+                    label: '前叉末端 RMS 加速度 (g)',
+                    data: [3.65, 3.41, 2.21, 2.07],
+                    backgroundColor: ['#f87171', '#fbbf24', '#34d399', '#0d9488'],
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'RMS 加速度 (g) [越低越舒适]', font: { size: 10 } }
+                    },
+                    x: {
+                        ticks: { font: { size: 10 } }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: commonChartTooltipConfig
+                }
+            }
+        });
+
+        // ==========================================
+        // CHART 3: Drivetrain Bar Chart (Chart.js)
+        // ==========================================
+        const dtLabelsRaw = ['Shimano GRX 2x12 (48/31 + 11-34)', 'SRAM Mullet 1x12 (38T + 10-52)', 'SRAM XPLR 1x12 (40T + 10-44)', 'Shimano GRX 1x12 (40T + 10-45)'];
+        const dtLabels = dtLabelsRaw.map(l => wrapLabel(l, 16));
+
+        const ctxDt = document.getElementById('drivetrainBarChart').getContext('2d');
+        new Chart(ctxDt, {
+            type: 'bar',
+            data: {
+                labels: dtLabels,
+                datasets: [{
+                    label: '总齿比范围 (%)',
+                    data: [630, 520, 440, 450],
+                    backgroundColor: '#14b8a6',
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 700,
+                        title: { display: true, text: '齿比覆盖率区间 (%)', font: { size: 10 } }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: commonChartTooltipConfig
+                }
+            }
+        });
+
+        // ==========================================
+        // CHART 4: Geometry Scatter Chart (Plotly WebGL)
+        // ==========================================
+        const plotlyData = [
+            {
+                x: [76, 61, 72, 68, 74],
+                y: [1.54, 1.55, 1.51, 1.48, 1.52],
+                text: ['Trek Checkpoint (长轴距/轨地稳定)', 'Specialized Diverge (舒适直立/转向敏捷)', 'Giant Revolt (中庸全能万金油)', 'Mason Bokeh (硬派运动几何)', 'Whyte Tourus (山地基因平缓头管)'],
+                mode: 'markers+text',
+                type: 'scatter',
+                textposition: 'top center',
+                textfont: { size: 10, color: '#334155' },
+                marker: { size: 14, color: ['#0d9488', '#f59e0b', '#6366f1', '#ec4899', '#10b981'] }
+            }
+        ];
+
+        const plotlyLayout = {
+            margin: { l: 40, r: 40, t: 30, b: 40 },
+            xaxis: { title: { text: '拖曳距 Trail (mm) → [越大下坡越稳]', font: { size: 11 } }, range: [55, 80] },
+            yaxis: { title: { text: 'Stack-to-Reach 比值 → [越大骑姿越直立]', font: { size: 11 } }, range: [1.45, 1.60] },
+            hovermode: 'closest',
+            paper_bgcolor: 'rgba(0,0,0,0)',
+            plot_bgcolor: '#f8fafc'
+        };
+
+        Plotly.newPlot('geometryPlotlyChart', plotlyData, plotlyLayout, { responsive: true, displayModeBar: false });
+
+
+        // ==========================================
+        // C2W TAX CALCULATOR LOGIC
+        // ==========================================
+        const bikePriceInput = document.getElementById('bikePriceInput');
+        const bikePriceRange = document.getElementById('bikePriceRange');
+        const taxBracketSelect = document.getElementById('taxBracketSelect');
+        const tenureSelect = document.getElementById('tenureSelect');
+
+        function updateC2W() {
+            const price = parseFloat(bikePriceInput.value) || 0;
+            const bracket = taxBracketSelect.value;
+            const tenure = parseInt(tenureSelect.value) || 24;
+
+            let taxSavingsRate = 0.32; // Basic rate 20% + 8% NI approx (accounting for end of term fee)
+            if (bracket === 'higher') taxSavingsRate = 0.42; // Higher rate 40% + 2% NI
+            if (bracket === 'additional') taxSavingsRate = 0.47;
+
+            const netCost = price * (1 - taxSavingsRate);
+            const saved = price - netCost;
+            const monthly = netCost / tenure;
+
+            document.getElementById('resRRP').innerText = `£${price.toLocaleString()}`;
+            document.getElementById('resNetCost').innerText = `£${Math.round(netCost).toLocaleString()}`;
+            document.getElementById('resSaved').innerText = `省 £${Math.round(saved).toLocaleString()} (${Math.round(taxSavingsRate * 100)}%)`;
+            document.getElementById('resMonthly').innerText = `£${monthly.toFixed(2)} /月`;
+        }
+
+        bikePriceInput.addEventListener('input', (e) => {
+            bikePriceRange.value = e.target.value;
+            updateC2W();
+        });
+        bikePriceRange.addEventListener('input', (e) => {
+            bikePriceInput.value = e.target.value;
+            updateC2W();
+        });
+        taxBracketSelect.addEventListener('change', updateC2W);
+        tenureSelect.addEventListener('change', updateC2W);
+        updateC2W();
+
+
+        // ==========================================
+        // BRAND MATRIX EXPLORER & DYNAMIC TABLE
+        // ==========================================
+        const catalogData = [
+            { brand: 'Giant', model: 'Revolt 2 / 1 / 0', mat: 'AL', group: 'Global', price: 1199, priceMax: 1799, highlights: '入门与通勤首选。几何舒适，具有53mm宽胎间隙，全能防身。' },
+            { brand: 'Giant', model: 'Revolt Advanced 3 / 2 / 1 / 0', mat: 'Carbon', group: 'Global', price: 1999, priceMax: 3299, highlights: '消费级碳架中坚。D-Fuse 碳纤滤震，结合 GRX 2x12 套件无短板。' },
+            { brand: 'Giant', model: 'Revolt Adv Pro / SL / X', mat: 'Carbon', group: 'Global', price: 3999, priceMax: 9999, highlights: '顶级竞赛利器。SL极轻碳布，X版本搭载 40mm 前避震。' },
+            
+            { brand: 'Trek', model: 'Checkpoint ALR 3 / 4 / 5', mat: 'AL', group: 'Global', price: 1200, priceMax: 1700, highlights: '重装穿越装甲车。海量挂载孔，加长 Reach 带来轨道级下坡稳定性。' },
+            { brand: 'Trek', model: 'Checkpoint SL 5 / 6 / 7', mat: 'Carbon', group: 'Global', price: 2750, priceMax: 4750, highlights: 'IsoSpeed 断开式减震 + 下管内置储物仓，长途抗疲劳神器。' },
+            { brand: 'Trek', model: 'Checkmate SLR 7 / 9', mat: 'Carbon', group: 'Global', price: 5999, priceMax: 8950, highlights: '纯竞速 Gravel。极致追求气动外形与轻量化，放弃部分挂载。' },
+
+            { brand: 'Specialized', model: 'Diverge E5 Base / Elite', mat: 'AL', group: 'Global', price: 1195, priceMax: 1499, highlights: '大厂入门光环。高 Stack 直立几何，操控质感活泼。' },
+            { brand: 'Specialized', model: 'Diverge E5 Comp / Sport', mat: 'AL', group: 'Global', price: 1699, priceMax: 2399, highlights: '高配铝架。下放 Future Shock 1.5 把立避震，舒适度极佳。' },
+            { brand: 'Specialized', model: 'Diverge Carbon / STR', mat: 'Carbon', group: 'Global', price: 2999, priceMax: 6999, highlights: '顶尖舒适度。碳架+Future Shock，STR引入后上管阻尼系统。' },
+
+            { brand: 'Cannondale', model: 'Topstone Alloy 4 / 3 / 2 / 1', mat: 'AL', group: 'Global', price: 899, priceMax: 1800, highlights: '活跃路感。下沉式后下叉增强物理舒适度，敏捷轻盈。' },
+            { brand: 'Cannondale', model: 'Topstone Carbon / Lefty', mat: 'Carbon', group: 'Global', price: 2300, priceMax: 6350, highlights: 'Kingpin 30mm 软尾悬挂；部分顶配搭载 Lefty 左撇子单臂避震前叉。' },
+
+            { brand: 'Canyon', model: 'Grizl AL 6 / 7', mat: 'AL', group: 'Global', price: 1200, priceMax: 1600, highlights: '直销高性价比。50mm 巨幅胎宽，粗犷实用。' },
+            { brand: 'Canyon', model: 'Grail / Grizl CF SL & SLX', mat: 'Carbon', group: 'Global', price: 1900, priceMax: 5099, highlights: '去渠道化性价比高。标配双层飞翼弯把或碳轮，轻量且刚性足。' },
+
+            { brand: 'Boardman', model: 'ADV 8.6 / 8.8 / 8.9', mat: 'AL', group: 'UKLocal', price: 680, priceMax: 1200, highlights: '🇬🇧 国民级入门神车。标配预留全长挡泥板孔位，通勤防身首选。' },
+            { brand: 'Boardman', model: 'ADV 9.0 / 9.2 Carbon', mat: 'Carbon', group: 'UKLocal', price: 1700, priceMax: 3800, highlights: '🇬🇧 市场颠覆者。990g 碳架+全套 GRX 套件，£2,000 价格杀手。' },
+
+            { brand: 'Ribble', model: 'Gravel AL / Allgrit AL', mat: 'AL', group: 'UKLocal', price: 1499, priceMax: 1999, highlights: '🇬🇧 客制化涂装。53mm 胎宽，针对英国地貌开发。' },
+            { brand: 'Ribble', model: 'Gravel SL / Ultra-Grit', mat: 'Carbon', group: 'UKLocal', price: 2599, priceMax: 7499, highlights: '🇬🇧 T1000 碳纤气动整合，非对称座管滤震。' },
+
+            { brand: 'Mason', model: 'Bokeh 3 / 3.5', mat: 'AL', group: 'UKLocal', price: 2850, priceMax: 4100, highlights: '🇬🇧 铝合金艺术品。意大利 Dedacciai 定制管材手工焊接，兼容 UDH。' },
+            { brand: 'Whyte', model: 'Tourus / Friston', mat: 'AL', group: 'UKLocal', price: 1149, priceMax: 2299, highlights: '🇬🇧 山地车几何基因。平缓头管角度，苏格兰林道下坡自信心十足。' },
+            { brand: 'Kinesis', model: 'Tripster AT / G2', mat: 'AL', group: 'UKLocal', price: 1049, priceMax: 1999, highlights: '🇬🇧 硬核重装载体。车架刚性极强，满载摇车不疲软。' },
+            { brand: 'Pinnacle', model: 'Arkose 系列', mat: 'AL', group: 'UKLocal', price: 825, priceMax: 1399, highlights: '🇬🇧 Evans Cycles 自有品牌，低门槛全碳前叉跨界公路车。' },
+            { brand: 'Sonder', model: 'Camino AL', mat: 'AL', group: 'UKLocal', price: 700, priceMax: 1300, highlights: '🇬🇧 Alpkit 旗下，针对不列颠泥路开发，皮实耐造亲民。' }
+        ];
+
+        function renderCatalog() {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const mat = document.getElementById('materialFilter').value;
+            const group = document.getElementById('brandGroupFilter').value;
+            const maxP = parseFloat(document.getElementById('maxPriceRange').value);
+
+            const tbody = document.getElementById('catalogTableBody');
+            tbody.innerHTML = '';
+
+            const filtered = catalogData.filter(item => {
+                const matchSearch = item.brand.toLowerCase().includes(search) || item.model.toLowerCase().includes(search) || item.highlights.toLowerCase().includes(search);
+                const matchMat = (mat === 'ALL') || (item.mat === mat);
+                const matchGroup = (group === 'ALL') || (item.group === group);
+                const matchPrice = item.price <= maxP;
+                return matchSearch && matchMat && matchGroup && matchPrice;
+            });
+
+            if (filtered.length === 0) {
+                document.getElementById('noResults').classList.remove('hidden');
+            } else {
+                document.getElementById('noResults').classList.add('hidden');
+                filtered.forEach(item => {
+                    const priceStr = item.priceMax ? `£${item.price.toLocaleString()} - £${item.priceMax.toLocaleString()}` : `£${item.price.toLocaleString()}`;
+                    const c2wEst = `£${Math.round(item.price * 0.58).toLocaleString()}`;
+                    const matBadge = item.mat === 'Carbon' ? 
+                        '<span class="bg-teal-100 text-teal-800 font-semibold px-2 py-0.5 rounded text-[10px]">碳纤维</span>' : 
+                        '<span class="bg-amber-100 text-amber-800 font-semibold px-2 py-0.5 rounded text-[10px]">铝合金</span>';
+
+                    const row = document.createElement('tr');
+                    row.className = 'hover:bg-slate-50 transition border-b border-slate-100';
+                    row.innerHTML = `
+                        <td class="py-3 px-4 font-bold text-slate-800">${item.brand}</td>
+                        <td class="py-3 px-4 font-semibold text-slate-700">${item.model}</td>
+                        <td class="py-3 px-4">${matBadge}</td>
+                        <td class="py-3 px-4 font-mono font-bold text-slate-900">${priceStr}</td>
+                        <td class="py-3 px-4 font-mono font-bold text-teal-600">${c2wEst}</td>
+                        <td class="py-3 px-4 text-slate-500">${item.highlights}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            }
+        }
+
+        document.getElementById('searchInput').addEventListener('input', renderCatalog);
+        document.getElementById('materialFilter').addEventListener('change', renderCatalog);
+        document.getElementById('brandGroupFilter').addEventListener('change', renderCatalog);
+        document.getElementById('maxPriceRange').addEventListener('input', (e) => {
+            document.getElementById('maxPriceVal').innerText = `£${parseInt(e.target.value).toLocaleString()}`;
+            renderCatalog();
+        });
+
+        // Initial catalog render
+        renderCatalog();
+    </script>
+</body>
+</html>
